@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.client.EditorController" stylesheets="@styles.css">
+    <HBox styleClass="header-box" alignment="CENTER_LEFT">
+        <Label fx:id="titleLabel" styleClass="title-label"/>
+        <Label fx:id="copyFeedbackLabel" styleClass="copy-feedback" text="" visible="false"/>
+    </HBox>
+
+    <HBox>
+        <VBox styleClass="sidebar" prefWidth="200" spacing="10">
+            <HBox spacing="10">
+                <padding>
+                    <Insets top="5" right="5" bottom="5" left="5"/>
+                </padding>
+                <Button text="Import" styleClass="action-button" onAction="#handleImport">
+                    <tooltip>
+                        <Tooltip text="Import a file into the editor"/>
+                    </tooltip>
+                </Button>
+                <Button text="Export" styleClass="action-button" onAction="#handleExport">
+                    <tooltip>
+                        <Tooltip text="Export the current document"/>
+                    </tooltip>
+                </Button>
+            </HBox>
+
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label fx:id="edit_label" text="Editor Code:" styleClass="label"/>
+                <TextField fx:id="editorCodeField" styleClass="text-field" prefWidth="120" editable="false"/>
+                <Button fx:id="copyEditorButton" text="Copy" styleClass="small-button" onAction="#copyEditorCode">
+                    <tooltip>
+                        <Tooltip text="Copy editor code to clipboard"/>
+                    </tooltip>
+                </Button>
+            </HBox>
+
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label fx:id="view_label" text="Viewer Code:" styleClass="label"/>
+                <TextField fx:id="viewerCodeField" styleClass="text-field" prefWidth="120" editable="false"/>
+                <Button fx:id="copyViewerButton" text="Copy" styleClass="small-button" onAction="#copyViewerCode">
+                    <tooltip>
+                        <Tooltip text="Copy viewer code to clipboard"/>
+                    </tooltip>
+                </Button>
+            </HBox>
+
+            <HBox spacing="5" alignment="CENTER">
+                <Button fx:id="undoButton" text="↩" styleClass="undo-redo-button" onAction="#undo"/>
+                <Button fx:id="redoButton" text="↪" styleClass="undo-redo-button" onAction="#redo"/>
+            </HBox>
+
+            <Label text="Active Users:" styleClass="label"/>
+            <ListView fx:id="userList" styleClass="list-view"/>
+            <ListView fx:id="commentsList" styleClass="list-view"/>
+            <Button fx:id="commentbutton" text="Add Comment" styleClass="action-button" onAction="#handleAddcomment"></Button>
+
+            <Button fx:id="endButton" text="End Session" styleClass="action-button" maxWidth="Infinity" onAction="#endSession"/>
+        </VBox>
+
+        <HBox fx:id="textEditorContainer" HBox.hgrow="ALWAYS">
+            <ScrollPane fx:id="lineScrollPane" hbarPolicy="NEVER" vbarPolicy="NEVER" prefWidth="40" styleClass="scroll-pane">
+                <VBox fx:id="lineNumbers" styleClass="line-numbers"/>
+            </ScrollPane>
+
+            <StackPane fx:id="textAreaContainer" HBox.hgrow="ALWAYS">
+                <ScrollPane fx:id="textScrollPane" fitToWidth="true" fitToHeight="true">
+                    <TextArea fx:id="textArea" styleClass="text-area"/>
+                </ScrollPane>
+                <Pane fx:id="cursorLayer" mouseTransparent="true"/>
+            </StackPane>
+        </HBox>
+        </HBox>
+</VBox>

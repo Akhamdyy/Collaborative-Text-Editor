@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.client.WelcomeController"
+      alignment="CENTER" spacing="20" stylesheets="@styles.css">
+
+    <Label text="Welcome to Collaborative Editor" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+    <Label text="Enter your username:" styleClass="label"/>
+    <TextField fx:id="usernameField" promptText="Username" maxWidth="200"/>
+
+    <HBox alignment="CENTER" spacing="10">
+        <Button text="Start Editing" styleClass="action-button" onAction="#handleStartEditing"/>
+        <Button text="Join Session" styleClass="action-button" onAction="#handleJoinSession"/>
+    </HBox>
+
+    <HBox fx:id="joinSessionBox" alignment="CENTER" spacing="10" visible="false">
+        <TextField fx:id="sessionField" promptText="Enter session code" maxWidth="150"/>
+        <Button text="➔" styleClass="button" onAction="#handleJoinSessionSubmit"/>
+    </HBox>
+</VBox>
